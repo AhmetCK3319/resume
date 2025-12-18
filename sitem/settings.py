@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import environ
-from environ import Env
-
 
 env = environ.Env(DEBUG=(bool, True))
 environ.Env.read_env()

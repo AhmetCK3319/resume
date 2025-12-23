@@ -22,3 +22,6 @@
 ### - git push -u origin main
 ### - git clone git@github.com:AhmetCK3319/resume.git
 ### - git pull
+
+# AKTİF OLAN SAYFANIN YAZISINI KOYU YAPMAK
+### {% if request.resolver_match.url_name == 'index' %} active {% endif %}

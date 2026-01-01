@@ -1,18 +1,21 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    {% include 'includes/head.html' %}
+{% include 'includes/head.html' %}
 
-    <body>
+<body>
 
-        {% include 'includes/navbar.html' %}
+{% include 'includes/navbar.html' %}
 
-        {% block content %}
+{% block content %}
 
-        {% endblock %}
+{% endblock %}
 
-        {% include 'includes/footer.html' %}
-        {% include 'includes/scripts.html' %}
+{% include 'includes/footer.html' %}
+{% include 'includes/scripts.html' %}
 
-    </body>
+{% block extra_sc %}
+{% endblock %}
+
+</body>
 </html>

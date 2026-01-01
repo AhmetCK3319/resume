@@ -47,3 +47,19 @@ class SkillSettingAdmin(admin.ModelAdmin):
         model = SkillSetting
 
 admin.site.register(SkillSetting, SkillSettingAdmin)
+
+
+
+class ExperianceSettingAdmin(admin.ModelAdmin):
+    list_display = ('id','job_title', 'locaiton', 'updated_at', 'created_at')
+    search_fields = ('job_title', 'locaiton',)
+    list_editable = ('job_title', 'locaiton')
+    ordering = ('-start_date',)
+    date_hierarchy = 'start_date'
+    readonly_fields = ('created_at',)
+    list_per_page = 25
+
+    class Meta:
+        model = ExperianceSetting
+
+admin.site.register(ExperianceSetting, ExperianceSettingAdmin)

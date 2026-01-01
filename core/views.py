@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import GeneralSetting, ImageSetting
+from .models import GeneralSetting, ImageSetting, SkillSetting
 
 
 def index(request):
@@ -15,6 +15,8 @@ def index(request):
     fav_icon = ImageSetting.objects.get(name='fav_icon').file
     header_logo = ImageSetting.objects.get(name='header_logo').file
 
+    #skill
+    skills = SkillSetting.objects.all()
 
 
 
@@ -27,6 +29,7 @@ def index(request):
                'home_banner_image': home_banner_image,
                'fav_icon': fav_icon,
                'header_logo': header_logo,
+               'skills': skills,
                }
     return render(request, 'index.html',context)
 

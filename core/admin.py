@@ -32,3 +32,18 @@ class ImageSettingAdmin(admin.ModelAdmin):
         model = ImageSetting
 
 admin.site.register(ImageSetting, ImageSettingAdmin)
+
+
+class SkillSettingAdmin(admin.ModelAdmin):
+    list_display = ('id','name','order','persentage', 'description', 'updated_at', 'created_at')
+    search_fields = ('name', 'description',)
+    list_editable = ('name','order','persentage')
+    ordering = ('-created_at',)
+    date_hierarchy = 'created_at'
+    readonly_fields = ('created_at',)
+    list_per_page = 25
+
+    class Meta:
+        model = SkillSetting
+
+admin.site.register(SkillSetting, SkillSettingAdmin)

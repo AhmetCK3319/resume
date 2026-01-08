@@ -26,11 +26,21 @@ services:
       - sitem/docker.env
     volumes:
       - .:/srv/app
-    ports:
-      - '0.0.0.0:8000:8000'
     networks:
       - ahmet_net
     command: gunicorn sitem.wsgi:application --bind 0.0.0.0:8000
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    networks:
+      - ahmet_net
 
 volumes:
   postgresql-data:

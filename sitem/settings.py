@@ -133,6 +133,7 @@ STATICFILES_DIRS = [
 ]
 # email setting
 email_config = env.email_url('EMAIL_URL')
+
 EMAIL_BACKEND = email_config['EMAIL_BACKEND']
 EMAIL_HOST = email_config['EMAIL_HOST']
 EMAIL_PORT = email_config['EMAIL_PORT']

@@ -4,7 +4,7 @@
 docker exec -it app python manage.py makemigrations
 docker exec -it app python manage.py migrate
 docker exec -it app python manage.py createsuperuser
-
+docker exec -it app pip freeze > requirements.txt  
 ```
 
 # DJANGO KURULUMU

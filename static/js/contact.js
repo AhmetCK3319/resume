@@ -62,10 +62,8 @@ $(document).ready(function () {
                         success: function (response) {
                             if (response.success) {
                                 console.log('true');
-                                $('#contactForm :input').attr('disabled', 'disabled');
+                                $('#contactForm')[0].reset();
                                 $('#contactForm').fadeTo("slow", 1, function () {
-                                    $(this).find(':input').attr('disabled', 'disabled');
-                                    $(this).find('label').css('cursor', 'default');
                                     $('#success').fadeIn()
                                     $('.modal').modal('hide');
                                     $('#success').modal('show');

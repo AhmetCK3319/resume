@@ -58,10 +58,10 @@ $(document).ready(function () {
                     $(form).ajaxSubmit({
                         type: "POST",
                         data: $(form).serialize(),
-                        url: "contact_form",
-                        success: function (responce) {
-                            console.log(responce);
-                            if (responce.success) {
+                        url: "/contact/contact_form",
+                        success: function (response) {
+                            if (response.success) {
+                                console.log('true');
                                 $('#contactForm :input').attr('disabled', 'disabled');
                                 $('#contactForm').fadeTo("slow", 1, function () {
                                     $(this).find(':input').attr('disabled', 'disabled');
@@ -71,16 +71,15 @@ $(document).ready(function () {
                                     $('#success').modal('show');
                                 })
                             } else {
-                                error: function () {
-                                    $('#contactForm').fadeTo("slow", 1, function () {
-                                        $('#error').fadeIn()
-                                        $('.modal').modal('hide');
-                                        $('#error').modal('show');
-                                    })
-                                }
+                                console.log(response)
+                                console.log('false')
+                                $('#contactForm').fadeTo("slow", 1, function () {
+                                    $('#error').fadeIn()
+                                    $('.modal').modal('hide');
+                                    $('#error').modal('show');
+                                })
                             }
-                        }
-                        ,
+                        },
                         error: function () {
                             $('#contactForm').fadeTo("slow", 1, function () {
                                 $('#error').fadeIn()

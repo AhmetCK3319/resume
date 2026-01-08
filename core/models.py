@@ -36,9 +36,8 @@ class GeneralSetting(AbstractBaseModel):
         verbose_name='Description',
         help_text=''
     )
-    parameters = models.CharField(
+    parameters = models.TextField(
         default='',
-        max_length=255,
         blank=True,
         verbose_name='Parameters',
         help_text=''
@@ -121,6 +120,12 @@ class SkillSetting(AbstractBaseModel):
 
 
 class ExperianceSetting(AbstractBaseModel):
+    company_name = models.CharField(
+        default='',
+        max_length=255,
+        verbose_name='Company Name',
+        help_text=''
+    )
     job_title = models.CharField(
         default='',
         max_length=255,
@@ -146,9 +151,76 @@ class ExperianceSetting(AbstractBaseModel):
     )
 
     def __str__(self):
-        return self.name
+        return self.company_name
 
     class Meta:
         verbose_name = 'Experiance Setting'
         verbose_name_plural = 'Experiance Settings'
         ordering = ['-start_date']
+
+
+class EducationSetting(AbstractBaseModel):
+    scholl_name = models.CharField(
+        default='',
+        max_length=255,
+        verbose_name='scholl name',
+        help_text=''
+    )
+    major = models.CharField(
+        default='',
+        max_length=255,
+        blank=True,
+        verbose_name='major',
+        help_text=''
+    )
+    department = models.CharField(
+        default='',
+        max_length=255,
+        blank=True,
+        verbose_name='department',
+        help_text=''
+    )
+    start_date = models.DateField(
+        verbose_name='Start Date',
+    )
+    end_date = models.DateField(
+        verbose_name='End Date',
+        blank=True,
+        null=True,
+        help_text=''
+    )
+
+    def __str__(self):
+        return self.scholl_name
+
+    class Meta:
+        verbose_name = 'Education Setting'
+        verbose_name_plural = 'Education Settings'
+        ordering = ['-start_date']
+
+
+class SocialSetting(AbstractBaseModel):
+    order = models.IntegerField(
+        default=0,
+        verbose_name='Order',
+        help_text=''
+    )
+    link = models.URLField(
+        default='',
+        max_length=255,
+        verbose_name='Link',
+        help_text=''
+    )
+    icon = models.CharField(
+        default='',
+        max_length=255,
+        verbose_name='Icon',
+        help_text=''
+    )
+    def __str__(self):
+        return self.link
+
+    class Meta:
+        verbose_name = 'Social Setting'
+        verbose_name_plural = 'Social Settings'
+        ordering = ['-order']

@@ -39,6 +39,9 @@ services:
       - app
     ports:
       - "80:80"
+    volumes:
+      - ./staticfiles:/srv/app/staticfiles
+      - ./media:/srv/app/media
     networks:
       - ahmet_net
 

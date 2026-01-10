@@ -35,13 +35,14 @@ docker exec -it app pip freeze > requirements.txt
 # AKTİF OLAN SAYFANIN YAZISINI KOYU YAPMAK
 ### {% if request.resolver_match.url_name == 'index' %} active {% endif %}
 
-# def get_setting(key, MODEL=None, parameter_name=None):
-    if not parameter_name:
-        parameter_name = 'parameters'
-    if not MODEL:
-        MODEL = GeneralSetting
-    general_setting = MODEL.objects.filter(name=key).first()
-    if general_setting:
-        return getattr(general_setting, parameter_name)
-    else:
-        return '' 
+# Eğer Layout fonksiyonu varsa database hatası almamak için, 
+    def get_setting(key, MODEL=None, parameter_name=None):
+        if not parameter_name:
+            parameter_name = 'parameters'
+        if not MODEL:
+            MODEL = GeneralSetting
+        general_setting = MODEL.objects.filter(name=key).first()
+        if general_setting:
+            return getattr(general_setting, parameter_name)
+        else:
+            return '' 

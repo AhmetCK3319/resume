@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  postgres:
+    container_name: postgres
+    hostname: postgres
+    image: postgres:16
+    env_file:
+      - sitem/docker.env
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'postgresql-data:/var/lib/postgresql/data'
+    command: -p 5432
+    networks:
+      - ahmet_net
+
+  app:
+    container_name: app
+    hostname: app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - postgres
+    env_file:
+      - sitem/docker.env
+    volumes:
+      - .:/srv/app
+    networks:
+      - ahmet_net
+    command: gunicorn sitem.wsgi:application --bind 0.0.0.0:8000
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+    volumes:
+      - ./staticfiles:/srv/app/staticfiles
+      - ./media:/srv/app/media
+    networks:
+      - ahmet_net
+
+volumes:
+  postgresql-data:
+
+networks:
+  ahmet_net:
+    driver: bridge

@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+    <!--================Home Banner Area =================-->
+    <section class="home_banner_area">
+        <div class="container box_1620">
+            <div class="banner_inner d-flex align-items-center">
+                <div class="banner_content">
+                    <div class="media">
+                        <div class="d-flex">
+                            <img src="{{ home_banner_image.url }}" alt="" style="width: 450px !important; height: 450px!important;">
+                        </div>
+                        <div class="media-body">
+                            <div class="personal_text">
+                                <h6>Merhabalar, Ben</h6>
+                                <h3>{{ home_banner_name }}</h3>
+                                <h4>{{ home_banner_title }}</h4>
+                                <p style="text-align: justify;text-indent: 40px">{{ home_banner_description }}</p>
+                                <ul class="list basic_info">
+                                    <li><a href="mailto:ahmetcankoca1990@hotmail.com"><i class="lnr lnr-envelope"></i>
+                                        ahmetcankoca1990@hotmail.com</a></li>
+                                    <li><a href="javascript:void(0)"><i class="lnr lnr-home"></i> Kayseri/Türkiye</a>
+                                    </li>
+                                </ul>
+                                <ul class="list personal_social">
+                                    {% for social in socials %}
+                                       <li><a href="{{ social.link }}" target="_blank"> <i class="{{ social.icon }}"></i> </a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!--================Welcome Area =================-->
+    <section class="welcome_area p_120">
+        <div class="container">
+            <div class="row welcome_inner">
+                <div class="col-lg-6">
+                    <div class="welcome_text">
+                        <h4 style="color: #6f42c1">About Myself</h4>
+                        <p style="text-align: justify;text-indent: 40px">{{ about_myself_wellcome }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tools_expert">
+                        <div class="skill_main">
+                            {% for skill in skills %}
+                                <div class="skill_item">
+                                    <h4>{{ skill.name }} <span class="counter">{{ skill.persentage }}</span>%</h4>
+                                    <div class="progress_br">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar"
+                                                 style="width: {{ skill.persentage }}%;"
+                                                 aria-valuenow="{{ skill.persentage }}" 
+                                                 aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Welcome Area =================-->
+
+    <!--================My Tabs Area =================-->
+    <section class="mytabs_area p_120">
+        <div class="container">
+            <div class="tabs_inner">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                           aria-controls="home" aria-selected="true">My Experiences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                           aria-controls="profile" aria-selected="false">My Education</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                        <ul class="list">
+                            {% for experiance in experiances %}
+                                <li>
+                                    <span></span>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <p>{{ experiance.start_date|date:'M Y' }} -
+                                                {% if experiance.end_date %}
+                                                    {{ experiance.end_date|date:'M Y' }}
+                                                {% else %}
+                                                    present
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>{{ experiance.company_name }}</h4>
+                                            <p> {{ experiance.job_title }} <br/> {{ experiance.locaiton }} </p>
+                                        </div>
+                                    </div>
+                                </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <ul class="list">
+                            {% for education in educations %}
+                            <li>
+                                <span></span>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        <p>{{ education.start_date|date:'M Y' }} -
+                                                {% if education.end_date %}
+                                                    {{ education.end_date|date:'M Y' }}
+                                                {% else %}
+                                                    present
+                                                {% endif %}
+                                            </p>
+                                    </div>
+                                    <div class="media-body">
+                                        <h4>{{ education.scholl_name }}</h4>
+                                        <p>{{ education.major}} <br/>{{ education.department }}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End My Tabs Area =================-->
+{% endblock %}
